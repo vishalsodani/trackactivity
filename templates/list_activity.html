@@ -1,0 +1,21 @@
+{% extends "site_base.html" %}
+{% block content%}
+
+<ul>
+<table class="table">
+<tr><th>Name</th><th> Track End time?</th><th>Track</th></tr>
+{% for activity in activity_list %}
+<tr>
+<td >{{ activity.name }}</td>
+<td >{{activity.has_end_time}}</td>
+<td ><a href="{% url activity_detail activity.id %}">Enter Date and Time</a></td>
+</tr>
+	
+{% empty %}
+    <li><b>You have added no activities! </b></li>
+{% endfor %}
+</table>
+</ul>
+<a href="{% url new_activity %}">Please add an activity</a>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "site_base.html" %}
+{% block content%}
+<ul>
+<table class="table">
+<tr><th>Date</th><th> Start Time</th><th>End Time</th></tr>
+{% for detail in activity_detail %}
+<tr>
+<td >{{ detail.date }}</td>
+<td >{{detail.start_time}}</td>
+<td >{{detail.end_time}}</td>
+</tr>
+	
+{% empty %}
+    <li><b>You have added no data! </b></li>
+{% endfor %}
+</table>
+</ul>
+<form method="POST">
+{% csrf_token %}
+<div class="well">
+  <div id="date_of_activity" class="input-append">
+    <input data-format="yyyy-MM-dd" type="text"></input>
+    <span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </i>
+    </span>
+  </div>
+  <div id="start_time" class="input-append">
+    <input data-format="hh:mm:ss" type="text"></input>
+    <span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </i>
+    </span>
+  </div>
+   <div id="end_time" class="input-append">
+    <input data-format="hh:mm:ss" type="text"></input>
+    <span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </i>
+    </span>
+  </div>
+  <input type="submit" value="Save" class="btn add-on"/>
+</div>
+ </form>         
+  
+
+ 
+</div>
+{% endblock %}
