@@ -11,7 +11,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 import time
 from django.test import LiveServerTestCase
-from test_helper import create_superuser,login_admin_user
+from test_helper import create_superuser,login_admin_user,browse_to_add_activity_and_enter_name
 
 
 class authorised_user_should_be_able_to_add_an_activity(LiveServerTestCase):
@@ -23,9 +23,7 @@ class authorised_user_should_be_able_to_add_an_activity(LiveServerTestCase):
 
         browser = webdriver.Firefox()
         login_admin_user(browser)
-        browser.get("http://127.0.0.1:8081/my_activity/add_activity")
-        browser.find_element_by_name("name").send_keys("  Walking ")
-        browser.find_element_by_xpath('//input[@value="Save"]').click()
+        browse_to_add_activity_and_enter_name(browser,'Walking')
         elem = browser.find_element_by_xpath('//td[1]')
         
         self.assertEqual(elem.text, 'Walking')
@@ -41,9 +39,7 @@ class authorised_user_should_not_be_able_to_add_an_empty_activity(LiveServerTest
 
         browser = webdriver.Firefox()
         login_admin_user(browser)
-        browser.get("http://127.0.0.1:8081/my_activity/add_activity")
-        browser.find_element_by_name("name").send_keys("")
-        browser.find_element_by_xpath('//input[@value="Save"]').click()
+        browse_to_add_activity_and_enter_name(browser,"")
         elem = browser.find_element_by_xpath('//ul[@class="errorlist"]')
         
         self.assertEqual(elem.text, 'This field is required.')
