@@ -10,7 +10,7 @@ class ActivityForm(ModelForm):
     def save(self,request):
 
         activity = Activity()
-        activity.name = self.cleaned_data['name']
+        activity.name = self.cleaned_data['name'].strip()
         activity.has_end_time = self.cleaned_data['has_end_time']
         activity.user = request.user
         activity.save()
