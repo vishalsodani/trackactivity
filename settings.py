@@ -124,6 +124,9 @@ INSTALLED_APPS = (
     'south',
     'track_activity',
     'django.contrib.admin',
+    'lettuce.django',
+    'django_nose',
+
 
     
     
@@ -131,6 +134,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 )
 
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error.
