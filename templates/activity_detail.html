@@ -19,21 +19,21 @@
 {% csrf_token %}
 <div class="well">
   <div id="date_of_activity" class="input-append">
-    <input data-format="yyyy-MM-dd" type="text"></input>
+    <input data-format="yyyy-MM-dd" type="text" name="date"></input>
     <span class="add-on">
       <i data-time-icon="icon-time" data-date-icon="icon-calendar">
       </i>
     </span>
   </div>
   <div id="start_time" class="input-append">
-    <input data-format="hh:mm:ss" type="text"></input>
+    <input data-format="hh:mm:ss" type="text" name="start"></input>
     <span class="add-on">
       <i data-time-icon="icon-time" data-date-icon="icon-calendar">
       </i>
     </span>
   </div>
    <div id="end_time" class="input-append">
-    <input data-format="hh:mm:ss" type="text"></input>
+    <input data-format="hh:mm:ss" type="text" name="end"></input>
     <span class="add-on">
       <i data-time-icon="icon-time" data-date-icon="icon-calendar">
       </i>

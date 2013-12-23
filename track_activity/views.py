@@ -12,7 +12,8 @@ from django.core.urlresolvers import reverse
 def list_activity(request):
 
     activity_list = Activity.objects.filter(user = request.user)
-    return render_to_response('list_activity.html',{'activity_list':activity_list},context_instance=RequestContext(request))
+    return render_to_response('list_activity.html', {'activity_list':activity_list},
+                              context_instance=RequestContext(request))
 
 
 @login_required
@@ -23,16 +24,27 @@ def save_activity(request):
         form.save(request)
         return HttpResponseRedirect(reverse('list'))
 
-    return render_to_response('new_activity.html',{'form':form},context_instance=RequestContext(request))
+    return render_to_response('new_activity.html', {'form':form},
+                              context_instance=RequestContext(request))
 
 
 @login_required
 def activity_detail(request,activity_id):
 
     activity_detail = TimeTrack.objects.filter(activity = activity_id)
-    return render_to_response('activity_detail.html',{'activity_detail':activity_detail},context_instance=RequestContext(request))
-    
 
-    
-        
-    
+    if request.POST:
+        time_track = TimeTrack()
+        time_track.date = request.POST['date']
+        time_track.start_time = request.POST['start']
+        time_track.activity = Activity.objects.get(id = activity_id)
+        time_track.save()
+
+
+    return render_to_response('activity_detail.html', {'activity_detail':activity_detail},
+                              context_instance=RequestContext(request))
+
+
+
+
+
